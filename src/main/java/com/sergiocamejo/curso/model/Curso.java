@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter @Setter
@@ -17,8 +18,8 @@ public class Curso {
     @Enumerated(EnumType.ORDINAL)
     private Modalidad modalidad;
     private String fechaFinalizacion;
-    @OneToMany
-    private List<Tema> temas;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Tema> temas = new ArrayList<>();
 
 
     public Curso() {

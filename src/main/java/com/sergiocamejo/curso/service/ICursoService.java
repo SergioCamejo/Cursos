@@ -8,10 +8,10 @@ import java.util.List;
 public interface ICursoService {
 
     public List<Curso> getCursos();
-    public Curso saveCurso(Curso curso);
-    public Curso createCurso(CursoDTO cursoDTO);
+    public void saveCurso(Curso curso);
+    public void createCurso(CursoDTO cursoDTO);
     public void deleteCurso(Long id);
     public Curso findCurso(Long id);
-    public Curso editCurso(Long id, CursoDTO cursoDTO);
+    public void editCurso(Long id, CursoDTO cursoDTO);
 
 }

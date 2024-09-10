@@ -2,9 +2,13 @@ package com.sergiocamejo.curso.service;
 
 import com.sergiocamejo.curso.dto.CursoDTO;
 import com.sergiocamejo.curso.model.Curso;
+import com.sergiocamejo.curso.model.Tema;
 import com.sergiocamejo.curso.repository.ICursoRepository;
+import com.sergiocamejo.curso.repository.ITemaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,23 +17,26 @@ public class CursoService implements ICursoService {
     @Autowired
     private ICursoRepository cursoRepo;
 
+    @Autowired
+    private ITemaRepository temaRepo;
+
     @Override
     public List<Curso> getCursos() {
         return this.cursoRepo.findAll();
     }
 
     @Override
-    public Curso saveCurso(Curso curso) {
-        return this.cursoRepo.save(curso);
+    public void saveCurso(Curso curso) {
+        this.cursoRepo.save(curso);
     }
 
     @Override
-    public Curso createCurso(CursoDTO cursoDTO) {
+    public void createCurso(CursoDTO cursoDTO) {
         Curso nuevoCurso = new Curso();
         nuevoCurso.setNombre(cursoDTO.getNombre());
         nuevoCurso.setModalidad(cursoDTO.getModalidad());
         nuevoCurso.setFechaFinalizacion(cursoDTO.getFechaFinalizacion());
-        return this.cursoRepo.save(nuevoCurso);
+        this.cursoRepo.save(nuevoCurso);
     }
 
     @Override
@@ -44,7 +51,7 @@ public class CursoService implements ICursoService {
     }
 
     @Override
-    public Curso editCurso(Long id, CursoDTO cursoDTO) {
+    public void editCurso(Long id, CursoDTO cursoDTO) {
         Curso cursoEditado = this.findCurso(id);
         if (cursoDTO.getNombre() != null) {
             cursoEditado.setNombre(cursoDTO.getNombre());
@@ -55,6 +62,16 @@ public class CursoService implements ICursoService {
         if (cursoDTO.getFechaFinalizacion() != null) {
             cursoEditado.setFechaFinalizacion(cursoDTO.getFechaFinalizacion());
         }
-        return this.saveCurso(cursoEditado);
+
+        List<Tema> listaTemas = cursoEditado.getTemas();
+
+        if (cursoDTO.getTemas() != null){
+            for (Tema nuevoTema : cursoDTO.getTemas()){
+                Tema temaAGuardar = this.temaRepo.save(nuevoTema);
+                listaTemas.add(temaAGuardar);
+            }
+        }
+        cursoEditado.setTemas(listaTemas);
+        this.saveCurso(cursoEditado);
     }
 }
