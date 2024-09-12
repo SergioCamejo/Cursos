@@ -1,6 +1,6 @@
 #  Cursos y Temas
 
-![enter image description here](https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/870D/production/_111437543_197389d9-800f-4763-8654-aa30c04220e4.png.webp)
+![Portada repo Cursos](https://ichef.bbci.co.uk/ace/ws/800/cpsprodpb/870D/production/_111437543_197389d9-800f-4763-8654-aa30c04220e4.png.webp)
 
 Se necesita un programa para tener control de los temas aprendidos en diferentes cursos. 
 Cada curso puede tener uno o más temas asociados.
@@ -13,6 +13,8 @@ Cada curso puede tener uno o más temas asociados.
  - Obtener lista de todos los cursos.
  - Obtener lista de todos los temas.
  - Obtener todos los temas que tengan una determinada palabra.
+   ![Método getCursosEspecificos de Controller](https://drive.google.com/file/d/1AcGkHNS8E8HVzjV4d5eibqxrDFJa5z_C/view?usp=sharing)
+   ![Método getCursosEspecificos de Service](https://drive.google.com/file/d/1GQ3FnUMzflBIsz3j_SvjUa4moLqd4_ul/view?usp=sharing)
  - Modificar los datos de un curso.
  - Modificar datos de un tema.
 
