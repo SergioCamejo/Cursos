@@ -37,7 +37,7 @@ public class CursoController {
     public List<Curso> getCursosEspecificos (@PathVariable String palabraBuscada) {
         return cursoServ.getCursosEspecificos(palabraBuscada);
     }
-
+ 
     @PutMapping("/editar/{id}")
     public void edirCurso(@PathVariable Long id, @RequestBody CursoDTO cursoDTO){
         this.cursoServ.editCurso(id,cursoDTO);
