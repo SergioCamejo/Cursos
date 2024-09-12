@@ -34,7 +34,7 @@ public class CursoController {
     }
 
     @GetMapping ("/buscar/{palabraBuscada}")
-    public List<Curso> getCursosJava (@PathVariable String palabraBuscada) {
+    public List<Curso> getCursosEspecificos (@PathVariable String palabraBuscada) {
         return cursoServ.getCursosEspecificos(palabraBuscada);
     }
 
