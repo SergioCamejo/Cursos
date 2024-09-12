@@ -26,6 +26,25 @@ public class CursoService implements ICursoService {
     }
 
     @Override
+    public List<Tema> traerTemasDeUnCurso(Long id) {
+        return this.cursoRepo.findById(id).get().getTemas();
+    }
+
+    @Override
+    public List<Curso> getCursosEspecificos(String palabraBuscada) {
+        String textoABuscar;
+        List<Curso> listaCursosEspecificos = new ArrayList<>();
+        for (Curso curso : this.getCursos()) {
+            textoABuscar = curso.getNombre().trim().toLowerCase();
+            boolean contienePalabra = textoABuscar.contains(palabraBuscada);
+            if (contienePalabra) {
+                listaCursosEspecificos.add(curso);
+            }
+        }
+        return listaCursosEspecificos;
+    }
+
+    @Override
     public void saveCurso(Curso curso) {
         this.cursoRepo.save(curso);
     }
@@ -74,4 +93,6 @@ public class CursoService implements ICursoService {
         cursoEditado.setTemas(listaTemas);
         this.saveCurso(cursoEditado);
     }
+
+
 }
